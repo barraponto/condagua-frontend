@@ -4,7 +4,7 @@
 
     <div v-if="condos.length " class="condos">
       <b-button class="condo" variant="outline-secondary" block
-        v-for="condo in condos" v-bind:key="condo.id"
+        v-for="condo in condos" v-bind:key="condo._id"
         :to="{name: 'Condo', params: { id: condo._id } }">
         <h2>{{ condo.name }}</h2>
       </b-button>

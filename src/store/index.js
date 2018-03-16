@@ -46,6 +46,10 @@ export default new Vuex.Store({
       return authenticated.post('/api/user/condos', condo)
         .then(() => dispatch('getCondos'));
     },
+    addHydro({ dispatch, getters: { authenticated } }, { name, condo }) {
+      return authenticated.post(`/api/user/condos/${condo}/hydrometers`, { name })
+        .then(() => dispatch('getCondos'));
+    },
   },
   plugins: [createPersistedState()],
   strict: debug,
