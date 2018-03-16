@@ -1,10 +1,12 @@
 <template>
   <b-container>
-    <section tag="section" class="signup">
-      Crie seu perfil e monitore o consumo de água do seu condomínio.
+    <b-jumbotron tag="section" class="signup" bg-variant='transparent'>
+      <template slot="lead">
+        Crie seu perfil e monitore o consumo de água do seu condomínio.
+      </template>
       <fb-login appId="584208131930506" v-on:success="facebookLogin" />
       <b-button variant="info" block>Cadastre-se com Google</b-button>
-    </section>
+    </b-jumbotron>
   </b-container>
 </template>
 
