@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Home from '@/components/Home';
 import Signup from '@/components/Signup';
 import Dashboard from '@/components/Dashboard';
+import CondoAdd from '@/components/CondoAdd';
 
 Vue.use(Router);
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/dashboard',
       name: 'Dashboard',
       component: Dashboard,
+    },
+    {
+      path: '/condo/add',
+      name: 'CondoAdd',
+      component: CondoAdd,
     },
   ],
 });

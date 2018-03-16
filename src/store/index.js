@@ -41,7 +41,12 @@ export default new Vuex.Store({
     getCondos({ commit, getters: { authenticated } }) {
       return authenticated.get('/api/user/condos')
         .then(({ data }) => commit('condos', data));
-    }
+    },
+    addCondo({ dispatch, getters: { authenticated } }, condo) {
+      console.log(condo);
+      return authenticated.post('/api/user/condos', condo)
+        .then(() => dispatch('getCondos'));
+    },
   },
   plugins: [createPersistedState()],
   strict: debug,

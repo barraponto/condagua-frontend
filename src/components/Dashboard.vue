@@ -1,16 +1,23 @@
 <template>
   <b-jumbotron tag="section" class="dashboard" bg-variant="transparent">
     <template slot="lead">
-      Bem vindo, {{ user.name.first }}
+      Bem vindo, {{ user.name.first }}.
+      Escolha um condomínio para cadastrar novas medições.
     </template>
     <div v-if="condos.length " class="">
-      <div class="condo" v-for="condo in condos" v-bind:key="condo.id">
-        Relogio
-      </div>
+      <b-button class="condo" variant="outline-secondary" block
+        v-for="condo in condos" v-bind:key="condo.id">
+        <h2>{{ condo.name }}</h2>
+      </b-button>
+      <b-button variant="primary" size="lg" block :to="{ name: 'CondoAdd' }">
+        Cadastre Outro Condominio
+      </b-button>
     </div>
     <div v-else class="no-condos">
       <p>Você ainda não cadastrou nenhum condomínio!</p>
-      <b-button variant="primary" size="lg" block>Cadastre Agora</b-button>
+      <b-button variant="primary" size="lg" block :to="{ name: 'CondoAdd' }">
+        Cadastre Agora
+      </b-button>
     </div>
   </b-jumbotron>
 </template>
