@@ -17,7 +17,7 @@ export default new Vuex.Store({
   },
   actions: {
     facebookLogin({ commit }, { userId, accessToken }) {
-      return axios.post('/auth/facebook', { userId, accessToken })
+      return axios.post('/api/auth/facebook', { userId, accessToken })
         .then(token => commit('login', { auth: token }))
         .catch(err => console.error(err)); /* eslint-disable-line no-console */
     },
