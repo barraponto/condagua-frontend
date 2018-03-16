@@ -7,6 +7,7 @@ import CondoAdd from '@/components/CondoAdd';
 import CondoView from '@/components/CondoView';
 import HydroAdd from '@/components/HydroAdd';
 import HydroView from '@/components/HydroView';
+import ReadingAdd from '@/components/ReadingAdd';
 
 Vue.use(Router);
 
@@ -46,6 +47,11 @@ export default new Router({
       path: '/hydro/:id',
       name: 'Hydro',
       component: HydroView,
+    },
+    {
+      path: '/hydro/:id/readings/add',
+      name: 'ReadingAdd',
+      component: ReadingAdd,
     },
   ],
 });

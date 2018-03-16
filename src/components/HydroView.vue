@@ -3,13 +3,15 @@
     bg-variant="transparent" header-level="5"
     :header="hydro.name">
     <div class="readings" v-if="hydro.readings.length">
-      <b-button variant="primary" size="lg" block :to="{ name: 'ReadingAdd' }">
+      <b-button variant="primary" size="lg" block
+        :to="{ name: 'ReadingAdd', params: { id: hydro._id } }">
         Cadastre Outra Leitura
       </b-button>
     </div>
     <div v-else class="no-readings">
       <p>Você ainda não cadastrou nenhuma leitura!</p>
-      <b-button variant="primary" size="lg" block :to="{ name: 'ReadingAdd' }">
+      <b-button variant="primary" size="lg" block
+        :to="{ name: 'ReadingAdd', params: { id: hydro._id } }">
         Cadastre Agora
       </b-button>
     </div>
