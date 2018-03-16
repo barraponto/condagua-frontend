@@ -5,8 +5,8 @@
     <template slot="lead">
       Monitore o consumo de água do seu condomínio e evite surpresas no fim do mês!
     </template>
-    <b-button variant="primary">Cadastre-se</b-button>
-    <b-button variant="secondary">Saiba Mais</b-button>
+    <b-button :to="{name: 'Signup'}" variant="primary" size="lg">Cadastre-se</b-button>
+    <b-button variant="secondary" size="lg">Saiba Mais</b-button>
   </b-jumbotron>
 </template>
 
