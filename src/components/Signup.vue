@@ -24,6 +24,7 @@ export default {
     facebookLogin({ status, authResponse }) {
       if (status === 'connected') {
         const { userId, accessToken } = authResponse;
+        this.$store.dispatch('facebookLogin', { userId, accessToken });
       }
     },
   },
