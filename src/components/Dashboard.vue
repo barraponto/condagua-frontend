@@ -1,10 +1,10 @@
 <template>
   <b-jumbotron tag="section" class="dashboard" bg-variant="transparent">
     <template slot="lead">
-      Bem vindo, {{ $store.state.user.name.first }}
+      Bem vindo, {{ user.name.first }}
     </template>
     <div v-if="condos.length " class="">
-      <div class="condo" v-for="condo in condos">
+      <div class="condo" v-for="condo in condos" v-bind:key="condo.id">
         Relogio
       </div>
     </div>
@@ -16,12 +16,18 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
-  name: 'Home',
+  name: 'Dashboard',
   data() {
-    return {
-      condos: [],
-    };
+    return { };
+  },
+  computed: {
+    ...mapState(['condos', 'user']),
+  },
+  created() {
+    this.$store.dispatch('getCondos');
   },
 };
 </script>

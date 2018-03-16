@@ -10,6 +10,7 @@ const debug = process.env.NODE_ENV !== 'production';
 export default new Vuex.Store({
   state: {
     user: null,
+    condos: [],
   },
   mutations: {
     login(state, user) {
@@ -17,6 +18,9 @@ export default new Vuex.Store({
     },
     userInfo(state, user) {
       state.user = { ...state.user, ...user };
+    },
+    condos(state, condos) {
+      state.condos = condos;
     },
   },
   getters: {
@@ -34,6 +38,10 @@ export default new Vuex.Store({
       return authenticated.get('/api/user/')
         .then(({ data }) => commit('userInfo', data));
     },
+    getCondos({ commit, getters: { authenticated } }) {
+      return authenticated.get('/api/user/condos')
+        .then(({ data }) => commit('condos', data));
+    }
   },
   plugins: [createPersistedState()],
   strict: debug,
