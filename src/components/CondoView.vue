@@ -5,7 +5,7 @@
     <div class="hydrometers" v-if="condo.hydrometers.length">
       <b-button class="hydrometer" variant="outline-secondary" block
         v-for="hydro in condo.hydrometers" v-bind:key="hydro._id"
-        :to="{ name: 'Hydrometer', params: { id: hydro._id } }">
+        :to="{ name: 'Hydro', params: { id: hydro._id } }">
         <h2>{{ hydro.name }}</h2>
       </b-button>
       <b-button variant="primary" size="lg" block

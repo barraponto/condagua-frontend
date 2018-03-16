@@ -1,19 +1,15 @@
 <template>
-  <b-jumbotron tag="section" class="condo"
+  <b-jumbotron tag="section" class="hydro"
     bg-variant="transparent" header-level="5"
-    :header="condo.name">
-    <div class="hydrometers" v-if="hydrometers.length">
-      <b-button class="hydrometer" variant="outline-secondary" block
-        v-for="hydro in hydrometers" v-bind:key="hydro.id">
-        <h2>{{ hydro.name }}</h2>
-      </b-button>
-      <b-button variant="primary" size="lg" block :to="{ name: 'HydrometerAdd' }">
-        Cadastre Outro Relógio
+    :header="hydro.name">
+    <div class="readings" v-if="hydro.readings.length">
+      <b-button variant="primary" size="lg" block :to="{ name: 'ReadingAdd' }">
+        Cadastre Outra Leitura
       </b-button>
     </div>
-    <div v-else class="no-hydrometers">
-      <p>Você ainda não cadastrou nenhum relógio!</p>
-      <b-button variant="primary" size="lg" block :to="{ name: 'HydrometerAdd' }">
+    <div v-else class="no-readings">
+      <p>Você ainda não cadastrou nenhuma leitura!</p>
+      <b-button variant="primary" size="lg" block :to="{ name: 'ReadingAdd' }">
         Cadastre Agora
       </b-button>
     </div>
@@ -24,17 +20,20 @@
 import { mapState } from 'vuex';
 
 export default {
-  name: 'CondoView',
+  name: 'HydroView',
   data() {
-    return {
-      hydrometers: [],
-    };
+    return { };
   },
   computed: {
     ...mapState(['condos', 'user']),
-    condo() {
-      return this.condos.find(
-        condo => condo._id === this.$route.params.id); /* eslint-disable-line */
+    hydrometers() {
+      return this.condos
+        .map(condo => condo.hydrometers)
+        .reduce((aggregate, hydrometers) => [...aggregate, ...hydrometers], []);
+    },
+    hydro() {
+      return this.hydrometers.find(
+        hydro => hydro._id === this.$route.params.id); /* eslint-disable-line */
     },
   },
 };
