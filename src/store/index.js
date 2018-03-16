@@ -14,12 +14,24 @@ export default new Vuex.Store({
     login(state, user) {
       state.user = user;
     },
+    userInfo(state, user) {
+      state.user = { ...state.user, ...user };
+    },
+  },
+  getters: {
+    authenticated: ({ user }) => axios.create({
+      headers: { Authorization: `Bearer ${user.auth}` },
+    }),
   },
   actions: {
     facebookLogin({ commit }, { userId, accessToken }) {
       return axios.post('/api/auth/facebook', { userId, accessToken })
-        .then(token => commit('login', { auth: token }))
+        .then(({ data }) => commit('login', { auth: data.authToken }))
         .catch(err => console.error(err)); /* eslint-disable-line no-console */
+    },
+    getUserInfo({ commit, getters: { authenticated } }) {
+      return authenticated.get('/api/user/')
+        .then(({ data }) => commit('userInfo', data));
     },
   },
   strict: debug,
