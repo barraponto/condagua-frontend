@@ -20,6 +20,7 @@ export default {
   },
   methods: {
     addReading({ value }) {
+      /* eslint-disable-next-line no-underscore-dangle */
       return this.$store.dispatch('addReading', { value, hydro: this.hydro._id })
         .then(() => this.$router.push({ name: 'Dashboard' }));
     },

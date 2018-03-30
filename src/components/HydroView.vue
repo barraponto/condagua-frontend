@@ -3,6 +3,7 @@
     bg-variant="transparent" header-level="5"
     :header="hydro.name">
     <div class="readings" v-if="hydro.readings.length">
+      <chart :data="chartData" :options="{}" />
       <b-button variant="primary" size="lg" block
         :to="{ name: 'ReadingAdd', params: { id: hydro._id } }">
         Cadastre Outra Leitura
@@ -20,11 +21,15 @@
 
 <script>
 import { mapState } from 'vuex';
+import ReadingsChart from '@/components/ReadingsChart';
 
 export default {
   name: 'HydroView',
   data() {
     return { };
+  },
+  components: {
+    chart: ReadingsChart,
   },
   computed: {
     ...mapState(['condos', 'user']),
@@ -36,6 +41,13 @@ export default {
     hydro() {
       return this.hydrometers.find(
         hydro => hydro._id === this.$route.params.id); /* eslint-disable-line */
+    },
+    chartData() {
+      const data = this.hydro.readings.map(
+        ({ value, date }) => ({ x: Date.parse(date), y: value }));
+      return {
+        datasets: [{ label: 'Últimas Leituras', data }],
+      };
     },
   },
 };

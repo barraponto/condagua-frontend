@@ -20,6 +20,7 @@ export default {
   },
   methods: {
     addHydro({ name }) {
+      /* eslint-disable-next-line no-underscore-dangle */
       return this.$store.dispatch('addHydro', { name, condo: this.condo._id })
         .then(() => this.$router.push({ name: 'Dashboard' }));
     },
